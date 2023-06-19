@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+
+{% block contenido %}
+
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-3">
+            <h1>Formulario perfil extendido</h1>
+            <form action="" method="post" enctype="multipart/form-data">
+
+                {% csrf_token %}
+                {{fuser|crispy}}
+                {{form|crispy}}
+
+
+            <input type="submit" value="Guardar" class="btn btn-success">
+            </form>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+    
+
+{% endblock contenido %}
