@@ -1,13 +1,13 @@
 from django.contrib import admin
-from .models import producto
+from .models import Producto
 
 # Register your models here.
 
 class admproducto(admin.ModelAdmin):
-    list_display=["id", "nombre", "descripcion", "precio", "cantidad", "imagen"]
-    list_editable=["nombre", "descripcion", "precio", "cantidad", "imagen"]
+    list_display=["id", "nombre", "descripcion", "precio", "stock", "imagen"]
+    list_editable=["nombre", "descripcion", "precio", "stock", "imagen"]
 
     class meta:
-        model=producto
+        model=Producto
 
-admin.site.register(producto, admproducto)
+admin.site.register(Producto, admproducto)

@@ -56,6 +56,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+LOGIN_REDIRECT_URL="/"
+
+LOGOUT_REDIRECT_URL="/"
+
 ROOT_URLCONF = 'proyecto001.urls'
 
 TEMPLATES = [
@@ -128,3 +132,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+import os
+
+MEDIA_ROOT= '/media/'
+MEDIA_ROOT= os.path.join(BASE_DIR, "media")

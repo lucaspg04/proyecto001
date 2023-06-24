@@ -2,11 +2,11 @@ from django.db import models
 
 # Create your models here.
 
-class producto(models.Model):
+class Producto(models.Model):
     id=models.IntegerField(primary_key=True)
-    nombre=models.CharField(max_length=40)
+    nombre=models.CharField(max_length=50)
     descripcion=models.TextField(max_length=300)
     precio=models.IntegerField()
-    cantidad=models.IntegerField()
-    imagen=models.ImageField()
+    stock=models.IntegerField()
+    imagen=models.ImageField(upload_to="productos")
 
