@@ -31,8 +31,8 @@
                     <td>{{prod.nombre}}</td>
                     <td>{{prod.precio}}</td>
                     <td>{{prod.stock}}</td>
-                    <td><a href="#" role="button" class="btn btn-warning text-light">Modificar</a>
-                    <a href="#" role="button" class="btn btn-danger text-light">Eliminar</a> </td>
+                    <td><a href="{% url 'updateproducto' prod.id %}" role="button" class="btn btn-warning text-light">Modificar</a>
+                    <a href="{% url 'deleteproducto' prod.id %}" role="button" class="btn btn-danger text-light">Eliminar</a> </td>
                 </tr>
                 {% endfor %}
             
