@@ -106,6 +106,7 @@ def ver_producto(request, id):
     contexto = {'prod': producto}
     return render(request, 'aplicacion/verproducto.html', contexto)
 
+@login_required
 def crearpedido(request):
     pedido=Pedido.objects.create(user=request.user)
     carro=Carro(request)
