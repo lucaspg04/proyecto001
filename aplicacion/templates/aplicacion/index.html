@@ -3,7 +3,6 @@
 
 {% block contenido %}
 
-{% load humanize %}
 
 <div style="float: right;">
 
@@ -18,7 +17,8 @@
         <img class="card-img-top" src="{{ p.imagen }}" alt="Card image">
         <div class="card-body">
             <h4 class="card-title">{{p.nombre}}</h4>
-            <p class="card-text">${{p.precio | intcomma}}</p>
+            <p class="card-text">${{p.precio }}</p>
+            <a href="{% url 'verproducto' p.id %}" class="btn btn-primary">Ver Producto</a>
             <a href="{% url 'carro:agregar' p.id %}" class="btn btn-primary">Agregar Producto</a>
         </div>
     </div>

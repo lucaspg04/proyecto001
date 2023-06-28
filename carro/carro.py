@@ -2,16 +2,12 @@ class Carro:
     def __init__(self, request):
         self.request = request
         self.session = request.session
-        self.carro = {}  # Inicializar self.carro como un diccionario vacío
-
+        self.carro = {} 
         carro = self.session.get("carro")
         if not carro:
             carro = self.session["carro"] = {}
-        else:
-            self.carro = carro
-
-    # Resto del código de la clase Carro...
-
+        
+        self.carro = carro
 
     def agregar(self, producto):
         if str(producto.id) not in self.carro.keys():
@@ -44,6 +40,7 @@ class Carro:
         for key, value in self.carro.items():
             if key == str(producto.id):
                 value["cantidad"] -= 1
+                value["precio"] -= float(producto.precio)
                 if value["cantidad"] <= 0:
                     self.eliminar(producto)
                 break
