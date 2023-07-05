@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from .forms import frmRegistro, frmCrearProducto
-from .models import Producto, Pedido, DetallePedido
+from .models import Producto, Pedido, DetallePedido, Categoria, Marca
 from carro.carro import Carro
 from django.contrib import messages
+from django.db import transaction
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 
@@ -22,8 +23,31 @@ def index(request):
 def pedidoreali(request):
     return render(request, 'aplicacion/pedidorealizado.html')
 
-def registro(request):
-    return render(request, 'registration/registro.html')
+def carrito(request):
+    return render(request, 'carro/carrito.html')
+
+def listar(request):
+    
+    pedidos = Pedido.objects.all()
+    detalles = DetallePedido.objects.all()
+    
+    contexto = {
+        'pedido':pedidos,
+        'detalle':detalles
+    }
+    
+    return render(request, 'aplicacion/pedidos/listar.html', contexto)
+
+def marca_categoria(request):
+    marcas = Marca.objects.all()
+    categorias = Categoria.objects.all()
+    
+    contexto = {
+        'marca':marcas,
+        'categoria':categorias
+    }
+    
+    return render(request, "aplicacion/productos/marca_categoria.html", contexto)
 
 def Admproductos(request):
     productos = Producto.objects.all()
@@ -106,19 +130,33 @@ def ver_producto(request, id):
     contexto = {'prod': producto}
     return render(request, 'aplicacion/verproducto.html', contexto)
 
+@login_required  
 def crearpedido(request):
-    pedido=Pedido.objects.create(user=request.user)
-    carro=Carro(request)
-    detalle_pedido=[]
+    carro = Carro(request)
+    pedido = Pedido.objects.create(user=request.user)
+    total_monto = 0
+
     for key, value in carro.carro.items():
-        detalle_pedido.append(DetallePedido(
-            
-            producto_id=key,
-            cantidad=value["cantidad"],
+        producto = Producto.objects.get(id=key)
+        cantidad = value["cantidad"]
+        precio = producto.precio
+
+        producto.stock -= cantidad
+        producto.save()
+
+        DetallePedido.objects.create(
+            producto=producto,
+            cantidad=cantidad,
             user=request.user,
             pedido=pedido
-        ))
-    
-    DetallePedido.objects.bulk_create(detalle_pedido)
-    
+        )
+
+        total_monto += precio * cantidad
+
+    pedido.monto_total = total_monto
+    pedido.save()
+
+    carro.vaciar()
+
     return render(request, 'aplicacion/pedidorealizado.html')
+

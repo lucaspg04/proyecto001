@@ -17,7 +17,7 @@
     <div class="col-1"></div>
     <div class="col-3">
         <br><br><br><br>
-        <h2>{{prod.nombre}}</h2>
+        <h2>{{prod.categoria}} {{prod.nombre}}</h2>
         <h4>${{prod.precio}}</h4>
         <p>{{ prod.descripcion }}</p>
         <a href="{% url 'carro:agregar' prod.id %}" class="btn btn-primary">Agregar Producto</a>

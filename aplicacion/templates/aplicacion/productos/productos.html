@@ -19,8 +19,11 @@
                 <tr>
                     <th>ID</th>
                     <th>NOMBRE</th>
+                    <th>MARCA</th>
+                    <th>CATEGORIA</th>
                     <th>PRECIO</th>
                     <th>STOCK</th>
+                    <th>GENERO</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -29,8 +32,11 @@
                 <tr class="table-primary">
                     <td>{{prod.id}}</td>
                     <td>{{prod.nombre}}</td>
+                    <td>{{prod.marca}}</td>
+                    <td>{{prod.categoria}}</td>
                     <td>{{prod.precio}}</td>
                     <td>{{prod.stock}}</td>
+                    <td>{{prod.genero}}</td>
                     <td><a href="{% url 'updateproducto' prod.id %}" role="button" class="btn btn-warning text-light">Modificar</a>
                     <a href="{% url 'deleteproducto' prod.id %}" role="button" class="btn btn-danger text-light">Eliminar</a> </td>
                 </tr>

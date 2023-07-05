@@ -1,5 +1,5 @@
 from django import forms
-from .models import Producto
+from .models import Producto, Marca, Categoria
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
@@ -14,4 +14,14 @@ class frmCrearProducto(forms.ModelForm):
 
     class Meta:
         model=Producto
-        fields=["nombre","descripcion","precio","stock", "imagen"]
+        fields=["nombre", "marca", "categoria","descripcion","precio","stock", "genero",  "imagen"]
+        
+class frmCrearMarca(forms.ModelForm):
+    class Meta:
+        model=Marca
+        fields=["id", "nombre"]
+        
+class frmCrearCategoria(forms.ModelForm):
+    class Meta:
+        model=Categoria
+        fields=["id", "nombre"]

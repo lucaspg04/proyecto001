@@ -1,8 +1,9 @@
 from django.contrib import admin
 from django.urls import path
 from .views import index, registro, registro, Admproductos,  crearproducto, updateProducto, \
-    deleteProducto, productosuser, crearpedido, ver_producto, pedidoreali
-
+    deleteProducto, productosuser, crearpedido, ver_producto, pedidoreali, listar, marca_categoria, \
+    carrito
+    
 urlpatterns = [
     path('', index, name="index"),
     path('registro', registro, name="registro"),
@@ -15,4 +16,7 @@ urlpatterns = [
     path('pedido', crearpedido, name="crearpedido"),
     path('verproducto/<id>', ver_producto, name="verproducto"),
     path('pedidorealizado', pedidoreali, name="pedidorealizado"),
+    path('listar', listar, name="listar"),
+    path('marca_categorias', marca_categoria, name='marca_categoria'),
+    path('carrito', carrito, name="carrito")
 ]
