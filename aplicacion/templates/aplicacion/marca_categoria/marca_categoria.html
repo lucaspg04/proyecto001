@@ -32,8 +32,8 @@
                         <tr class="table-primary">
                             <td>{{m.id}}</td>
                             <td>{{m.nombre}}</td>
-                            <td><a href="#" role="button" class="btn btn-warning text-light">Modificar</a>
-                            <a href="#" role="button" class="btn btn-danger text-light">Eliminar</a> </td>
+                            <td><a href="{% url 'modificarmarca' m.id %}" role="button" class="btn btn-warning text-light">Modificar</a>
+                            <a href="{% url 'eliminarmarca' m.id %}" role="button" class="btn btn-danger text-light">Eliminar</a> </td>
                         </tr>
                         {% endfor %}
                     
@@ -72,8 +72,8 @@
                         <tr class="table-primary">
                             <td>{{c.id}}</td>
                             <td>{{c.nombre}}</td>
-                            <td><a href="#" role="button" class="btn btn-warning text-light">Modificar</a>
-                            <a href="#" role="button" class="btn btn-danger text-light">Eliminar</a> </td>
+                            <td><a href="{% url 'modificarcategoria' c.id %}" role="button" class="btn btn-warning text-light">Modificar</a>
+                            <a href="{% url 'eliminarcategoria' c.id %}" role="button" class="btn btn-danger text-light">Eliminar</a> </td>
                         </tr>
                         {% endfor %}
                     

@@ -102,6 +102,62 @@ def crearcategoria(request):
         
     return render(request, 'aplicacion/marca_categoria/crearcategoria.html', contexto)
 
+def modificarmarca(request,id):
+    
+    marca = get_object_or_404(Marca, id=id)
+    
+    contexto={
+        'form': frmCrearMarca(instance=marca)
+    }
+    
+    if request.method == 'POST':
+        formulario = frmCrearMarca(data=request.POST, instance=marca)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect(to="marca_categoria")    
+    return render(request,"aplicacion/marca_categoria/modificarmarca.html", contexto)
+
+def modificarcategoria(request,id):
+    
+    categoria = get_object_or_404(Categoria, id=id)
+    
+    contexto={
+        'form': frmCrearCategoria(instance=categoria)
+    }
+    
+    if request.method == 'POST':
+        formulario = frmCrearCategoria(data=request.POST, instance=categoria)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect(to="marca_categoria")    
+    return render(request,"aplicacion/marca_categoria/modificarcategoria.html", contexto)
+
+def eliminarmarca(request,id):
+    
+    marca=get_object_or_404(Marca,id=id)
+    contexto={
+        "prod":marca
+    }
+
+    if request.method=="POST":
+        marca.delete()
+        return redirect(to="marca_categoria")
+
+    return render(request,"aplicacion/marca_categoria/eliminarmarca.html",contexto)
+
+def eliminarcategoria(request,id):
+    
+    categoria=get_object_or_404(Categoria,id=id)
+    contexto={
+        "prod":categoria
+    }
+
+    if request.method=="POST":
+        categoria.delete()
+        return redirect(to="marca_categoria")
+
+    return render(request,"aplicacion/marca_categoria/eliminarcategoria.html",contexto)
+
 def updateProducto(request,id):
     
     producto = get_object_or_404(Producto, id=id)

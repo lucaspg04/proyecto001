@@ -1,40 +1,94 @@
 .footer {
-  position:fixed;
-  width: 100%;
+    position: fixed;
+    width: 100%;
 }
 
-#nav_carrito{
-  position: fixed; right: 4%;
+#nav_carrito {
+    position: fixed;
+    right: 5%;
 }
 
-#mi_cuenta{
-  position: fixed; right: 8%;
+#mi_cuenta {
+    position: fixed;
+    right: 8%;
+    margin-left: 200px;
+}
+
+#btn_off{
+    width: 100%;
+}
+
+#btnbtn {
+    background-color: blue;
+}
+
+#div_pedido{
+    display: flex;
+    border: 2px solid cornflowerblue;
+    border-color: gray;
+    border-radius: 8px;
+    padding: 8%;
+}
+
+#btn_pedido{
+    margin-top: 30px;
+    margin-left: 1%;
+}
+
+@media (max-width: 1440px) {
+    #spantotal{
+        margin-top: 30px;
+        margin-right: 180px;
+    }
+
+    #mi_cuenta {
+        position: absolute;
+        right: 8%;
+    }
+
+    #drop_micuenta {
+        position: absolute;
+        right: 8%;
+    }
 }
 
 @media (max-width: 1024px) {
-  #mi_cuenta{
-    position: absolute; right: 10%;
-  }
+    #mi_cuenta {
+        position: absolute;
+        right: 10%;
+    }
 
-  #drop_micuenta{
-    position: absolute; right: 10%;
-  }
+    #drop_micuenta {
+        position: absolute;
+        right: 10%;
+    }
 }
 
-
 @media (max-width: 768px) {
-  #nav_carrito {
-    position: static;
-    right: auto;
-  }
+    #nav_carrito {
+        position: absolute;
+        right: 1%;
+    }
 
-  #mi_cuenta {
-    position: static;
-    right: auto;
-  }
-  
-  #drop_micuenta{
-    position: absolute;
-    right: auto;
-  }
+    #mi_cuenta {
+        position: absolute;
+        right: 8%;
+    }
+
+    #drop_micuenta {
+        position: absolute;
+        right: auto;
+    }
+}
+
+@media (max-width: 425px) {
+    #nav_carrito {
+        position: static;
+        right: auto;
+    }
+
+    #mi_cuenta {
+        position: absolute;
+        right: 30%;
+    }
 }

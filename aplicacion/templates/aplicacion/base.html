@@ -12,6 +12,8 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="{% static 'aplicacion/js/bootstrap.bundle.min.js' %}"></script>
+
+    <script src="https://kit.fontawesome.com/ae9a16a72c.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -32,7 +34,7 @@
                             <li><a class="dropdown-item" href="{% url 'hombrecategoria' 'Sweater' %}">Sweaters</a></li>
                             <li><a class="dropdown-item" href="{% url 'hombrecategoria' 'Sobretodo' %}">Sobretodos</a></li>
                             <li><a class="dropdown-item" href="{% url 'hombrecategoria' 'Parka' %}">Parkas</a></li>
-                            <li><a class="dropdown-item" href="{% url 'hombrecategoria' 'Acessorio' %}">Accesorios</a></li>
+                            <li><a class="dropdown-item" href="{% url 'hombrecategoria' 'Accesorio' %}">Accesorios</a></li>
                             <li><a class="dropdown-item" href="{% url 'productoshombre' %}">Ver Todo</a></li>
                         </ul>
                     </li>
@@ -45,7 +47,7 @@
                             <li><a class="dropdown-item" href="{% url 'mujercategoria' 'Sweater' %}">Sweaters</a></li>
                             <li><a class="dropdown-item" href="{% url 'mujercategoria' 'Sobretodo' %}">Sobretodos</a></li>
                             <li><a class="dropdown-item" href="{% url 'mujercategoria' 'Parka' %}">Parkas</a></li>
-                            <li><a class="dropdown-item" href="{% url 'mujercategoria' 'Acessorio' %}">Accesorios</a></li>
+                            <li><a class="dropdown-item" href="{% url 'mujercategoria' 'Accesorio' %}">Accesorios</a></li>
                             <li><a class="dropdown-item" href="{% url 'productosmujer' %}">Ver Todo</a></li>
                         </ul>
                     </li>
@@ -79,7 +81,7 @@
                     </li>
                     <li id="nav_carrito" class="nav-item">
                         <button class="nav-link" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo">
-                            Carrito
+                            <i class="fa-solid fa-cart-shopping"></i>
                         </button>
                     </li>
                 </ul>
@@ -120,14 +122,14 @@
             <div class="row mt-5">
                 <div class="col-1"></div>
                 <div class="col-10">
-                    <a style="width: 100%;" class="btn btn-success btn-block" href="{% url 'carrito' %}">Ver mi Carrito</a>
+                    <a id="btn_off" class="btn btn-success btn-block" href="{% url 'carrito' %}">Ver mi Carrito</a>
                 </div>
                 <div class="col-1"></div>
             </div>
         </div>
     </div>
 
-    <div class="mt-4 container">
+    <div class="container">
 
 
         {% block contenido %}
