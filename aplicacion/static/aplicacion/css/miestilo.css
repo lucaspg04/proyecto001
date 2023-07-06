@@ -1,9 +1,40 @@
 .footer {
-  position:relative;
-  left: 0;
-  bottom: 0;
+  position:fixed;
   width: 100%;
-  /*background-color: red;
-  color: white;
-  text-align: center;*/
+}
+
+#nav_carrito{
+  position: fixed; right: 4%;
+}
+
+#mi_cuenta{
+  position: fixed; right: 8%;
+}
+
+@media (max-width: 1024px) {
+  #mi_cuenta{
+    position: absolute; right: 10%;
+  }
+
+  #drop_micuenta{
+    position: absolute; right: 10%;
+  }
+}
+
+
+@media (max-width: 768px) {
+  #nav_carrito {
+    position: static;
+    right: auto;
+  }
+
+  #mi_cuenta {
+    position: static;
+    right: auto;
+  }
+  
+  #drop_micuenta{
+    position: absolute;
+    right: auto;
+  }
 }

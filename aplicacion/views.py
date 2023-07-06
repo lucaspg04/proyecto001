@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
-from .forms import frmRegistro, frmCrearProducto
+from .forms import frmRegistro, frmCrearProducto, frmCrearCategoria, frmCrearMarca
 from .models import Producto, Pedido, DetallePedido, Categoria, Marca
 from carro.carro import Carro
 from django.contrib import messages
@@ -47,7 +47,7 @@ def marca_categoria(request):
         'categoria':categorias
     }
     
-    return render(request, "aplicacion/productos/marca_categoria.html", contexto)
+    return render(request, "aplicacion/marca_categoria/marca_categoria.html", contexto)
 
 def Admproductos(request):
     productos = Producto.objects.all()
@@ -69,6 +69,38 @@ def crearproducto(request):
             return redirect(to="admProductos")
             
     return render(request, 'aplicacion/productos/crear.html', contexto)
+
+def crearmarca(request):
+    
+    form = frmCrearMarca(request.POST or None)
+    
+    contexto={
+        "form":form
+    }
+    
+    if request.method=="POST":
+        
+        if form.is_valid():
+            form.save()
+            return redirect(to="marca_categoria")    
+        
+    return render(request, 'aplicacion/marca_categoria/crearmarca.html', contexto)
+
+def crearcategoria(request):
+    
+    form = frmCrearCategoria(request.POST or None)
+    
+    contexto={
+        "form":form
+    }
+    
+    if request.method=="POST":
+        
+        if form.is_valid():
+            form.save()
+            return redirect(to="marca_categoria")    
+        
+    return render(request, 'aplicacion/marca_categoria/crearcategoria.html', contexto)
 
 def updateProducto(request,id):
     
@@ -130,11 +162,49 @@ def ver_producto(request, id):
     contexto = {'prod': producto}
     return render(request, 'aplicacion/verproducto.html', contexto)
 
-<<<<<<< HEAD
-@login_required  
-=======
+def productos_mujer(request):
+    
+    productos= Producto.objects.filter(genero="F")
+    
+    contexto={
+        'productos': productos
+    }
+    
+    return render(request, 'aplicacion/producto_mujer/productos_mujer.html', contexto)
+
+def categoria_mujer(request, categoria):
+    
+    categoria = Categoria.objects.get(nombre=categoria)
+    productos= Producto.objects.filter(genero="F", categoria=categoria)
+    
+    contexto={
+        'productos': productos
+    }
+    
+    return render(request, 'aplicacion/producto_mujer/categoria_mujer.html', contexto)
+
+def productos_hombre(request):
+    
+    productos= Producto.objects.filter(genero="M")
+    
+    contexto={
+        'productos': productos
+    }
+    
+    return render(request, 'aplicacion/producto_hombre/productos_hombre.html', contexto)
+
+def categoria_hombre(request, categoria):
+    
+    categoria = Categoria.objects.get(nombre=categoria)
+    productos = Producto.objects.filter(genero='M', categoria=categoria)
+    contexto = {
+        'productos': productos
+    }
+    
+    return render(request, 'aplicacion/producto_hombre/categoria_hombre.html', contexto)
+
+
 @login_required
->>>>>>> 4adfc592270d14a9f927ed9eb50bcbf8744ece90
 def crearpedido(request):
     carro = Carro(request)
     pedido = Pedido.objects.create(user=request.user)

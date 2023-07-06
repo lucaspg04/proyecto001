@@ -1,14 +1,14 @@
 {% extends 'aplicacion/base.html' %}
+
 {% load static %}
 
 {% block contenido %}
 
-<div class="container mt-5">
 <div class="row d-flex justify-content-between">
-    {% for p in prod %}
-
+    {% for p in productos %}
+    
     <div class="col-4 card mb-4 " style="width:350px">
-        <img class="card-img-top" src="{{ p.imagen }}" alt="Card image">
+        <img class="card-img-top" src="{{ p.imagen.url }}" alt="Card image">
         <div class="card-body">
             <h4 class="card-title">{{ p.categoria }} {{ p.nombre }}</h4>
             <p class="card-text">${{p.precio }}</p>
@@ -16,10 +16,9 @@
             <a href="{% url 'carro:agregar' p.id %}" class="btn btn-primary">Agregar Producto</a>
         </div>
     </div>
-
+    
     {% endfor %}
-</div>
-</div>
-
+    
+    </div>
 
 {% endblock contenido %}

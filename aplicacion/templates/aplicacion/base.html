@@ -18,90 +18,117 @@
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'index' %}">Inicio</a>
-<<<<<<< HEAD
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Hombre</a>
-                <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Link</a></li>
-                <li><a class="dropdown-item" href="#">Another link</a></li>
-                <li><a class="dropdown-item" href="#">A third link</a></li>
-                </ul>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Mujer</a>
-                <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Link</a></li>
-                <li><a class="dropdown-item" href="#">Another link</a></li>
-                <li><a class="dropdown-item" href="#">A third link</a></li>
-=======
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'productosuser' %}"></a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Hombre</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'hombrecategoria' 'Polera' %}">Poleras</a></li>
+                            <li><a class="dropdown-item" href="{% url 'hombrecategoria' 'Poleron' %}">Poleron</a></li>
+                            <li><a class="dropdown-item" href="{% url 'hombrecategoria' 'Chaqueta' %}">Chaquetas</a></li>
+                            <li><a class="dropdown-item" href="{% url 'hombrecategoria' 'Sweater' %}">Sweaters</a></li>
+                            <li><a class="dropdown-item" href="{% url 'hombrecategoria' 'Sobretodo' %}">Sobretodos</a></li>
+                            <li><a class="dropdown-item" href="{% url 'hombrecategoria' 'Parka' %}">Parkas</a></li>
+                            <li><a class="dropdown-item" href="{% url 'hombrecategoria' 'Acessorio' %}">Accesorios</a></li>
+                            <li><a class="dropdown-item" href="{% url 'productoshombre' %}">Ver Todo</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Mujer</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'mujercategoria' 'Polera' %}">Poleras</a></li>
+                            <li><a class="dropdown-item" href="{% url 'mujercategoria' 'Poleron' %}">Poleron</a></li>
+                            <li><a class="dropdown-item" href="{% url 'mujercategoria' 'Chaqueta' %}">Chaquetas</a></li>
+                            <li><a class="dropdown-item" href="{% url 'mujercategoria' 'Sweater' %}">Sweaters</a></li>
+                            <li><a class="dropdown-item" href="{% url 'mujercategoria' 'Sobretodo' %}">Sobretodos</a></li>
+                            <li><a class="dropdown-item" href="{% url 'mujercategoria' 'Parka' %}">Parkas</a></li>
+                            <li><a class="dropdown-item" href="{% url 'mujercategoria' 'Acessorio' %}">Accesorios</a></li>
+                            <li><a class="dropdown-item" href="{% url 'productosmujer' %}">Ver Todo</a></li>
+                        </ul>
                     </li>
                     <li class="nav-item">
                         {% if perms.add %}
-                        <a class="nav-link" href="{% url 'admProductos' %}">Productos admin</a>
+                        <a class="nav-link" href="{% url 'admProductos' %}">Producto</a>
                         {% endif %}
-                    </li> 
+                    </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"></a>
+                        {% if perms.add %}
+                        <a class="nav-link" href="{% url 'listar' %}">Pedido</a>
+                        {% endif %}
+                    </li>
+                    <li class="nav-item">
+                        {% if perms.add %}
+                        <a class="nav-link" href="{% url 'marca_categoria' %}">Marca y Categoria</a>
+                        {% endif %}
+                    </li>
+                    <li class="nav-item dropdown" id="mi_cuenta">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Mi
+                            Cuenta</a>
+                        <ul id="drop_micuenta" class="dropdown-menu">
+                            {% if user.is_authenticated %}
+                            <li><a class="dropdown-item" href="#">{{user.username}}</a></li>
+                            <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar Sesión</a></li>
+                            {% else %}
+                            <li><a class="dropdown-item" href="{% url 'login' %}">Iniciar Sesión</a></li>
+                            <li><a class="dropdown-item" href="{% url 'registro' %}">Registrarse</a></li>
+                            {% endif %}
+                        </ul>
+                    </li>
+                    <li id="nav_carrito" class="nav-item">
+                        <button class="nav-link" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo">
+                            Carrito
+                        </button>
                     </li>
                 </ul>
-                <ul class="navbar-nav" style="position: fixed;right:2%">
-                    {% if user.is_authenticated %}
-                    <li><a class="nav-link" href="#">{{user.username}}</a></li>
-                    <li><a class="nav-link" href="{% url 'logout' %}">Cerrar Sesión</a></li>
-                    {% else %}
-
-                   
-                    <li><a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a></li>
-                    <li><a class="nav-link" href="{% url 'registro' %}">Registrarse</a></li>
-                  {% endif %}
->>>>>>> 4adfc592270d14a9f927ed9eb50bcbf8744ece90
-                </ul>
-            </li>
-            <li class="nav-item">
-                {% if perms.add %}
-                <a class="nav-link" href="{% url 'admProductos' %}">Producto</a>
-                {% endif %}
-            </li>
-            <li class="nav-item">
-                {% if perms.add %}
-                <a class="nav-link" href="{% url 'listar' %}">Pedido</a>
-                {% endif %}
-            </li>
-            <li class="nav-item">
-                {% if perms.add %}
-                <a class="nav-link" href="{% url 'marca_categoria' %}">Marca y Categoria</a>
-                {% endif %}
-            </li>
-            <li class="nav-item dropdown" id="micuenta">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Mi Cuenta</a>
-                <ul class="dropdown-menu">
-                    {% if user.is_authenticated %}
-                        <li><a class="dropdown-item" href="#">{{user.username}}</a></li>
-                        <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar Sesión</a></li>
-                    {% else %}
-                        <li><a class="dropdown-item" href="{% url 'login' %}">Iniciar Sesión</a></li>
-                        <li><a class="dropdown-item" href="{% url 'registro' %}">Registrarse</a></li>
-                    {% endif %}
-                </ul>
-            </li>
-            </ul>
-        </div>
+            </div>
         </div>
     </nav>
 
+    <div class="offcanvas offcanvas-end" style="width: 650px;" id="demo">
+        <div class="offcanvas-header">
+            <h1 class="offcanvas-title">Carro de Compras</h1>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="d-flex justify-content-end me-3">Total: ${{importe_total_carro}}</div>
+            <div class="row mt-2 ">
+                <div class="col-2">
+                </div>
+                    <div class="col-8">
+                        {% for key, value in request.session.carro.items %}
+                        <div class="mt-5">
+                            <div class="d-flex justify-content-between">
+                                <div class="mb-1 d-flex align-items-center" style="margin-right: 100px;">
+                                    <div>
+                                        <a class="nav-link" href="{% url 'verproducto' value.id %}">{{value.nombre}}</a>
+                                        <a href="{% url 'carro:agregar' value.id %}" class="btn btn-sm">+</a>
+                                        <span>{{value.cantidad}}</span>
+                                        <a href="{% url 'carro:restar' value.id %}" class="btn btn-sm">-</a>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center fs-5"><span>${{value.precio}}</span></div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-2">
+                </div>
+            <div class="row mt-5">
+                <div class="col-1"></div>
+                <div class="col-10">
+                    <a style="width: 100%;" class="btn btn-success btn-block" href="{% url 'carrito' %}">Ver mi Carrito</a>
+                </div>
+                <div class="col-1"></div>
+            </div>
+        </div>
+    </div>
+
     <div class="mt-4 container">
+
 
         {% block contenido %}
 
@@ -110,8 +137,10 @@
 
 
         {% endblock contenido %}
-        
+
+
     </div>
+
     <footer class="footer bg-dark text-light mt-5">
         <div class="p-3">
             <div class="row">
@@ -120,7 +149,6 @@
                 <div class="col-sm-4"></div>
             </div>
         </div>
-
     </footer>
 </body>
 

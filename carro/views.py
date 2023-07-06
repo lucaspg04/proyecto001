@@ -13,7 +13,7 @@ def agregar_producto(request, id):
     
     carro.agregar(producto=producto)
     
-    return redirect("index")
+    return redirect("carrito")
 
 def eliminar_producto(request, producto_id):
     
@@ -23,7 +23,7 @@ def eliminar_producto(request, producto_id):
     
     carro.eliminar(producto=producto)
     
-    return redirect("index")
+    return redirect("carrito")
 
 def restar_producto(request, id):
     
@@ -33,7 +33,7 @@ def restar_producto(request, id):
     
     carro.restar(producto=producto)
     
-    return redirect("index")
+    return redirect("carrito")
 
 def limpiar(request, producto_id):
     
@@ -41,4 +41,4 @@ def limpiar(request, producto_id):
     
     carro.vaciar()
     
-    return redirect("index")
+    return redirect("carrito")
