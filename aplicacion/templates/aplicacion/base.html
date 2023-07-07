@@ -10,8 +10,9 @@
     <link href="{% static 'aplicacion/css/bootstrap.min.css' %}" rel="stylesheet" />
     <link href="{% static 'aplicacion/css/miestilo.css' %}" rel="stylesheet" />
 
-    <!-- Latest compiled JavaScript -->
     <script src="{% static 'aplicacion/js/bootstrap.bundle.min.js' %}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script src="https://kit.fontawesome.com/ae9a16a72c.js" crossorigin="anonymous"></script>
 </head>
@@ -131,6 +132,19 @@
 
     <div class="container">
 
+        {% if messages %}
+
+            {% for m in messages %}
+                <script>
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Exito!',
+                        text: '{{m}}',
+                      })
+                  </script>
+            {% endfor %}
+        
+        {% endif %}
 
         {% block contenido %}
 
@@ -139,7 +153,6 @@
 
 
         {% endblock contenido %}
-
 
     </div>
 

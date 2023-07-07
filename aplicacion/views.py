@@ -66,6 +66,7 @@ def crearproducto(request):
 
         if form.is_valid():
             form.save()
+            messages.success(request, ("Se ha creado con exito!"))
             return redirect(to="admProductos")
             
     return render(request, 'aplicacion/productos/crear.html', contexto)
@@ -82,6 +83,7 @@ def crearmarca(request):
         
         if form.is_valid():
             form.save()
+            messages.success(request, ("Se ha creado con exito!"))
             return redirect(to="marca_categoria")    
         
     return render(request, 'aplicacion/marca_categoria/crearmarca.html', contexto)
@@ -98,6 +100,7 @@ def crearcategoria(request):
         
         if form.is_valid():
             form.save()
+            messages.success(request, ("Se ha creado con exito!"))
             return redirect(to="marca_categoria")    
         
     return render(request, 'aplicacion/marca_categoria/crearcategoria.html', contexto)
@@ -114,6 +117,7 @@ def modificarmarca(request,id):
         formulario = frmCrearMarca(data=request.POST, instance=marca)
         if formulario.is_valid():
             formulario.save()
+            messages.success(request, ("Se ha modificado con exito!"))
             return redirect(to="marca_categoria")    
     return render(request,"aplicacion/marca_categoria/modificarmarca.html", contexto)
 
@@ -129,14 +133,24 @@ def modificarcategoria(request,id):
         formulario = frmCrearCategoria(data=request.POST, instance=categoria)
         if formulario.is_valid():
             formulario.save()
+            messages.success(request, ("Se ha modificado con exito!"))
             return redirect(to="marca_categoria")    
     return render(request,"aplicacion/marca_categoria/modificarcategoria.html", contexto)
 
 def eliminarmarca(request,id):
+
+
+    try:
+        prod= Producto.objects.all(marca=marca)
+        
+    except:
+        prod=None
     
     marca=get_object_or_404(Marca,id=id)
+
     contexto={
-        "prod":marca
+        "marca":marca,
+        "producto":prod
     }
 
     if request.method=="POST":
@@ -146,16 +160,20 @@ def eliminarmarca(request,id):
     return render(request,"aplicacion/marca_categoria/eliminarmarca.html",contexto)
 
 def eliminarcategoria(request,id):
-    
     categoria=get_object_or_404(Categoria,id=id)
+    try:
+        prod=Producto.objects.all(categoria=categoria)
+    except:
+        prod=None
     contexto={
-        "prod":categoria
+        "categoria":categoria,
+        "producto":prod
     }
 
     if request.method=="POST":
         categoria.delete()
         return redirect(to="marca_categoria")
-
+    
     return render(request,"aplicacion/marca_categoria/eliminarcategoria.html",contexto)
 
 def updateProducto(request,id):
@@ -195,6 +213,7 @@ def registro(request):
         formulario = frmRegistro(data=request.POST)
         if formulario.is_valid():
             formulario.save()
+            messages.success(request, ("Se ha registrado con exito!"))
             user = authenticate(username=formulario.cleaned_data["username"], password=formulario.cleaned_data["password1"])
             login(request, user)
             return redirect(to="index")

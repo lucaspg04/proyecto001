@@ -9,18 +9,35 @@
     <div class="col-sm-2"></div>
     <div class="col-sm-6">
         <h3>Eliminar Categoria</h3>
+
+        
         
         <form action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
+            {% if producto %}
+
+        <div class="alert alert-warning">
+            <strong>No es posible eliminar</strong> 
+            <p>La Categoria esta asociada a uno o varios productos, elimine el producto asociado para eliminar la Categoria</p>
+            
+        </div>
+        <div>
+            <a href="{% url 'marca_categoria' %}" class="btn btn-primary text-light btn-lg">Volver</a>
+        </div>
+
+        {% else %}
             <div class="alert alert-danger">
                 <strong>ADVERTENCIA!</strong> <br> Esta seguro que desea eliminar la Categoria: 
-                <h1> {{prod.nombre}}</h6>
+                <h6>{{categoria.nombre}}</h6>
             </div>
             <div>
                 <input type="submit" value="Eliminar" class="btn btn-danger text-light btn-lg">
             </div>
         
+            {% endif %}
         </form>
+
+        
     </div>
     <div class="col-sm-2"></div>
 </div>
